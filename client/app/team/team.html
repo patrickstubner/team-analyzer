@@ -1,0 +1,242 @@
+<header class="team-banner">
+  <div class="container">
+    <h2>{{TeamCtrl.team.level}} - {{TeamCtrl.team.name}}</h2>
+  </div>
+</header>
+<div>
+	<table ng-if="TeamCtrl.teamranking" class="ranking-table inline">
+    <caption>{{TeamCtrl.gameplan.name}}</caption>
+    <thead>
+      <tr>
+        <th ng-click="TeamCtrl.rankingSortBy = 'rank'; TeamCtrl.rankingReverse = !TeamCtrl.rankingReverse;" title="Position">#</th>
+        <th ng-click="TeamCtrl.rankingSortBy = 'name'; TeamCtrl.rankingReverse = !TeamCtrl.rankingReverse;" class="left" title="Mannschaftsname">Name</th>
+        <th ng-click="TeamCtrl.rankingSortBy = 'games'; TeamCtrl.rankingReverse = !TeamCtrl.rankingReverse;" title="Spiele">Sp</th>
+        <th ng-click="TeamCtrl.rankingSortBy = 'gamesWin'; TeamCtrl.rankingReverse = !TeamCtrl.rankingReverse;" title="Siege">S</th>
+        <th ng-click="TeamCtrl.rankingSortBy = 'gamesDraw'; TeamCtrl.rankingReverse = !TeamCtrl.rankingReverse;" title="Unentschieden">U</th>
+        <th ng-click="TeamCtrl.rankingSortBy = 'gamesLoss'; TeamCtrl.rankingReverse = !TeamCtrl.rankingReverse;" title="Niederlagen">N</th>
+        <th ng-click="TeamCtrl.rankingSortBy = 'goalsWin'; TeamCtrl.rankingReverse = !TeamCtrl.rankingReverse;" title="Erzielte Tore">T+</th>
+        <th ng-click="TeamCtrl.rankingSortBy = 'goalsLoss'; TeamCtrl.rankingReverse = !TeamCtrl.rankingReverse;" title="Gegentore">T-</th>
+        <th ng-click="TeamCtrl.rankingSortBy = 'goalsDiff'; TeamCtrl.rankingReverse = !TeamCtrl.rankingReverse;" title="Tordifferenz">T±</th>
+        <th ng-click="TeamCtrl.rankingSortBy = 'pointsLoss'; TeamCtrl.rankingReverse = !TeamCtrl.rankingReverse;" title="Verlustpunkte">P-</th>
+        <th ng-click="TeamCtrl.rankingSortBy = 'pointsPerGameWin'; TeamCtrl.rankingReverse = !TeamCtrl.rankingReverse;" title="Punkte pro Spiel">P/Sp</th>
+        <th ng-click="TeamCtrl.rankingSortBy = 'pointsWin'; TeamCtrl.rankingReverse = !TeamCtrl.rankingReverse;" title="Erzielte Punkte">Punkte</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="team in TeamCtrl.teamranking | orderBy:TeamCtrl.rankingSortBy:TeamCtrl.rankingReverse" ng-click="TeamCtrl.selectTeam1(team)" ng-class="{selected: TeamCtrl.search.team1 === team}">
+        <td>{{team.rank}}</td>
+        <td class="left">{{team.name}}</td>
+        <td>{{team.games}}</td>
+        <td>{{team.gamesWin}}</td>
+        <td>{{team.gamesDraw}}</td>
+        <td>{{team.gamesLoss}}</td>
+        <td>{{team.goalsWin}}</td>
+        <td>{{team.goalsLoss}}</td>
+        <td>{{team.goalsDiff}}</td>
+        <td>{{team.pointsLoss}}</td>
+        <td>{{team.pointsPerGameWin | number:2}}</td>
+        <td>{{team.pointsWin}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="display: inline-block;">
+  <div style="display: inline-block;">
+  <table ng-if="TeamCtrl.gameplan.games" class="game-table inline">
+    <caption>{{TeamCtrl.search.team1 ? TeamCtrl.search.team1.name : 'Alle'}}</caption>
+    <thead>
+      <tr>
+        <th colspan="5">Spiele</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="game in TeamCtrl.gameplan.games | filter:TeamCtrl.search.team1 ? TeamCtrl.search.team1.name : null | orderBy:'date':false" ng-click="TeamCtrl.selectTeam2(game.homeTeam, game.awayTeam)" ng-class="{win: TeamCtrl.isWin(game, 'team1'), loss: TeamCtrl.isLoss(game, 'team1'), draw: TeamCtrl.isDraw(game, 'team1'), selected: TeamCtrl.isSelected(game)}" tooltip="{{game.date | date:'EEE. d.M.yyyy H:mm'}}" tooltip-animation="false">
+        <td class="right">{{game.homeTeam}}</td>
+        <td class="right">{{game.homeScore}}</td>
+        <td>:</td>
+        <td class="right">{{game.awayScore}}</td>
+        <td class="left">{{game.awayTeam}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <table ng-if="TeamCtrl.search.team1" class="analysis-table inline">
+    <caption>{{TeamCtrl.search.team1 ? TeamCtrl.search.team1.name : 'Alle'}}</caption>
+    <thead>
+      <tr>
+        <th>Analyse</th>
+        <th>Auswärts</th>
+        <th>Heim</th>
+        <th>Alle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Spiele</td>
+        <td>{{TeamCtrl.search.team1.awayGames}}</td>
+        <td>{{TeamCtrl.search.team1.homeGames}}</td>
+        <td>{{TeamCtrl.search.team1.games}}</td>
+      </tr>
+      <tr>
+        <td>Siege</td>
+        <td>{{TeamCtrl.search.team1.awayGamesWin}}</td>
+        <td>{{TeamCtrl.search.team1.homeGamesWin}}</td>
+        <td>{{TeamCtrl.search.team1.gamesWin}}</td>
+      </tr>
+      <tr>
+        <td>Unentschieden</td>
+        <td>{{TeamCtrl.search.team1.awayGamesDraw}}</td>
+        <td>{{TeamCtrl.search.team1.homeGamesDraw}}</td>
+        <td>{{TeamCtrl.search.team1.gamesDraw}}</td>
+      </tr>
+      <tr>
+        <td>Niederlagen</td>
+        <td>{{TeamCtrl.search.team1.awayGamesLoss}}</td>
+        <td>{{TeamCtrl.search.team1.homeGamesLoss}}</td>
+        <td>{{TeamCtrl.search.team1.gamesLoss}}</td>
+      </tr>
+      <tr>
+        <td>Erzielte Tore</td>
+        <td>{{TeamCtrl.search.team1.awayGoalsWin}}</td>
+        <td>{{TeamCtrl.search.team1.homeGoalsWin}}</td>
+        <td>{{TeamCtrl.search.team1.goalsWin}}</td>
+      </tr>
+      <tr>
+        <td>Gegentore</td>
+        <td>{{TeamCtrl.search.team1.awayGoalsLoss}}</td>
+        <td>{{TeamCtrl.search.team1.homeGoalsLoss}}</td>
+        <td>{{TeamCtrl.search.team1.goalsLoss}}</td>
+      </tr>
+      <tr>
+        <td>Tordifferent</td>
+        <td>{{TeamCtrl.search.team1.awayGoalsDiff}}</td>
+        <td>{{TeamCtrl.search.team1.homeGoalsDiff}}</td>
+        <td>{{TeamCtrl.search.team1.goalsDiff}}</td>
+      </tr>
+      <tr>
+        <td>Verlustpunkte</td>
+        <td>{{TeamCtrl.search.team1.awayPointsLoss}}</td>
+        <td>{{TeamCtrl.search.team1.homePointsLoss}}</td>
+        <td>{{TeamCtrl.search.team1.pointsLoss}}</td>
+      </tr>
+      <tr>
+        <td>Erzielte Punkte</td>
+        <td>{{TeamCtrl.search.team1.awayPointsWin}}</td>
+        <td>{{TeamCtrl.search.team1.homePointsWin}}</td>
+        <td>{{TeamCtrl.search.team1.pointsWin}}</td>
+      </tr>
+      <tr>
+        <td>Verlustpunkte / Spiel</td>
+        <td>{{TeamCtrl.search.team1.awayPointsPerGameLoss | number:2}}</td>
+        <td>{{TeamCtrl.search.team1.homePointsPerGameLoss | number:2}}</td>
+        <td>{{TeamCtrl.search.team1.pointsPerGameLoss | number:2}}</td>
+      </tr>
+      <tr>
+        <td>Erzielte Punkte / Spiel</td>
+        <td>{{TeamCtrl.search.team1.awayPointsPerGameWin | number:2}}</td>
+        <td>{{TeamCtrl.search.team1.homePointsPerGameWin | number:2}}</td>
+        <td>{{TeamCtrl.search.team1.pointsPerGameWin | number:2}}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div style="display: inline-block;">
+  <table ng-if="TeamCtrl.search.team2" class="game-table inline">
+    <caption>{{TeamCtrl.search.team2.name}}</caption>
+    <thead>
+      <tr>
+        <th colspan="5">Spiele</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="game in TeamCtrl.gameplan.games | filter:TeamCtrl.search.team2 ? TeamCtrl.search.team2.name : null | orderBy:'date':false" ng-class="{win: TeamCtrl.isWin(game, 'team2'), loss: TeamCtrl.isLoss(game, 'team2'), draw: TeamCtrl.isDraw(game, 'team2')}" tooltip="{{game.date | date:'EEE. d.M.yyyy H:mm'}}" tooltip-animation="false">
+        <td class="right">{{game.homeTeam}}</td>
+        <td class="right">{{game.homeScore}}</td>
+        <td>:</td>
+        <td class="right">{{game.awayScore}}</td>
+        <td class="left">{{game.awayTeam}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <table ng-if="TeamCtrl.search.team2" class="analysis-table inline">
+    <caption>{{TeamCtrl.search.team2 ? TeamCtrl.search.team2.name : 'Alle'}}</caption>
+    <thead>
+      <tr>
+        <th>Analyse</th>
+        <th>Auswärts</th>
+        <th>Heim</th>
+        <th>Alle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Spiele</td>
+        <td>{{TeamCtrl.search.team2.awayGames}}</td>
+        <td>{{TeamCtrl.search.team2.homeGames}}</td>
+        <td>{{TeamCtrl.search.team2.games}}</td>
+      </tr>
+      <tr>
+        <td>Siege</td>
+        <td>{{TeamCtrl.search.team2.awayGamesWin}}</td>
+        <td>{{TeamCtrl.search.team2.homeGamesWin}}</td>
+        <td>{{TeamCtrl.search.team2.gamesWin}}</td>
+      </tr>
+      <tr>
+        <td>Unentschieden</td>
+        <td>{{TeamCtrl.search.team2.awayGamesDraw}}</td>
+        <td>{{TeamCtrl.search.team2.homeGamesDraw}}</td>
+        <td>{{TeamCtrl.search.team2.gamesDraw}}</td>
+      </tr>
+      <tr>
+        <td>Niederlagen</td>
+        <td>{{TeamCtrl.search.team2.awayGamesLoss}}</td>
+        <td>{{TeamCtrl.search.team2.homeGamesLoss}}</td>
+        <td>{{TeamCtrl.search.team2.gamesLoss}}</td>
+      </tr>
+      <tr>
+        <td>Erzielte Tore</td>
+        <td>{{TeamCtrl.search.team2.awayGoalsWin}}</td>
+        <td>{{TeamCtrl.search.team2.homeGoalsWin}}</td>
+        <td>{{TeamCtrl.search.team2.goalsWin}}</td>
+      </tr>
+      <tr>
+        <td>Gegentore</td>
+        <td>{{TeamCtrl.search.team2.awayGoalsLoss}}</td>
+        <td>{{TeamCtrl.search.team2.homeGoalsLoss}}</td>
+        <td>{{TeamCtrl.search.team2.goalsLoss}}</td>
+      </tr>
+      <tr>
+        <td>Tordifferent</td>
+        <td>{{TeamCtrl.search.team2.awayGoalsDiff}}</td>
+        <td>{{TeamCtrl.search.team2.homeGoalsDiff}}</td>
+        <td>{{TeamCtrl.search.team2.goalsDiff}}</td>
+      </tr>
+      <tr>
+        <td>Verlustpunkte</td>
+        <td>{{TeamCtrl.search.team2.awayPointsLoss}}</td>
+        <td>{{TeamCtrl.search.team2.homePointsLoss}}</td>
+        <td>{{TeamCtrl.search.team2.pointsLoss}}</td>
+      </tr>
+      <tr>
+        <td>Erzielte Punkte</td>
+        <td>{{TeamCtrl.search.team2.awayPointsWin}}</td>
+        <td>{{TeamCtrl.search.team2.homePointsWin}}</td>
+        <td>{{TeamCtrl.search.team2.pointsWin}}</td>
+      </tr>
+      <tr>
+        <td>Verlustpunkte / Spiel</td>
+        <td>{{TeamCtrl.search.team2.awayPointsPerGameLoss | number:2}}</td>
+        <td>{{TeamCtrl.search.team2.homePointsPerGameLoss | number:2}}</td>
+        <td>{{TeamCtrl.search.team2.pointsPerGameLoss | number:2}}</td>
+      </tr>
+      <tr>
+        <td>Erzielte Punkte / Spiel</td>
+        <td>{{TeamCtrl.search.team2.awayPointsPerGameWin | number:2}}</td>
+        <td>{{TeamCtrl.search.team2.homePointsPerGameWin | number:2}}</td>
+        <td>{{TeamCtrl.search.team2.pointsPerGameWin | number:2}}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  </div>
+</div>

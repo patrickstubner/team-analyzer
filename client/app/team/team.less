@@ -1,0 +1,126 @@
+[ng-click] {
+	cursor: pointer;
+}
+
+.team-banner {
+    position: relative;
+    color: #F5F5F5;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    background: #4393B9;
+}
+
+.inline {
+	display: inline-block;
+}
+
+.ranking-table {
+	vertical-align: top;
+	caption {
+		background-color: #f8f8f8;
+		border-color: #e7e7e7;
+		font-size: 1.2em;
+	}
+	tbody tr {
+		&:hover {
+			background-color: #E0E0E0;
+			&.selected {
+				background: #515151;
+				color: #FFF;
+			}
+		}
+		&.selected {
+			background: #515151;
+			color: #FFF;
+		}
+	}
+	th {
+		font-size: 1.1em;
+		background: #4393B9;
+		color: #FFF;
+	}
+	td, th{
+		padding: 2px 10px;
+		text-align: right;
+
+		&.left {
+			text-align: left;
+		}
+	}
+}
+
+.game-table {
+	vertical-align: top;
+	caption {
+		background-color: #f8f8f8;
+		border-color: #e7e7e7;
+		font-size: 1.2em;
+	}
+	tbody tr {
+		&:hover {
+			background-color: #E0E0E0;
+			&.selected {
+				background: #515151;
+				color: #FFF;
+			}
+		}
+		&.selected {
+			background: #515151;
+			color: #FFF;
+		}
+	}
+	th {
+		font-size: 1.1em;
+		background: #4393B9;
+		color: #FFF;
+	}
+	td, th {
+		padding: 2px 5px;
+		text-align: center;
+
+		&.right {
+			text-align: right;
+		}
+
+		&.left {
+			text-align: left;
+		}
+	}
+}
+
+.win {
+	background-color: rgb(95, 255, 95);
+}
+
+.loss {
+	background-color: rgb(255, 118, 118);
+}
+
+.draw {
+	background-color: rgb(169, 169, 255);
+}
+
+.analysis-table {
+	vertical-align: top;
+	caption {
+		background-color: #f8f8f8;
+		border-color: #e7e7e7;
+		font-size: 1.2em;
+	}
+	tbody tr:hover {
+		background-color: #E0E0E0;
+	}
+	th {
+		font-size: 1.1em;
+		background: #4393B9;
+		color: #FFF;
+	}
+	td, th {
+		padding: 2px 5px;
+		text-align: right;
+
+		&:first-child {
+			text-align: left;
+		}
+	}
+}
