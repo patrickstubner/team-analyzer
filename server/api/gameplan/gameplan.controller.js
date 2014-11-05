@@ -30,7 +30,7 @@ exports.show = function(req, res) {
           gameplan.sfvLsId = lsId;
           gameplan.sfvSgId = sgId;
           gameplan.href = req.query.lk;
-          return res.json(200, gameplan);
+          return res.json(gameplan);
       } else {
         Gameplan.findById(req.params.id, function (err, gameplan) {
           if(err) { return handleError(res, err); }

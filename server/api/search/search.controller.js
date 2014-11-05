@@ -19,23 +19,6 @@ exports.show = function(req, res) {
   }
   return request.get("http://www.football.ch/portaldata/1/nis/WebService/verein/VereinSearch.ashx?term="+req.params.id)
     .pipe(res);
-/*function(subres) {
-  console.log("request OK", subres); 
-      return subres.data;
-    }).on('error',
-    function(e) {
-  console.log("request NOK", e.message);
-      return {};
-    }
-  );
-*//*  var search = [{"id" : "1470","label" : "FC Dübendorf","lVereinsnummer" : "11011","value" : "11","strKurzbezeichnung" : "FVRZ","lk" : "http://www.fvrz.ch/desktopdefault.aspx/tabid-1186/v-1470/"},{"id" : "876908","label" : "Dübendorfer Futsal Verein","lVereinsnummer" : "11094","value" : "11","strKurzbezeichnung" : "FVRZ","lk" : "http://www.fvrz.ch/desktopdefault.aspx/tabid-1186/v-876908/"},{"id" : "720","label" : "SC Düdingen","lVereinsnummer" : "5027","value" : "3","strKurzbezeichnung" : "EL","lk" : "http://www.el-pl.ch/de/desktopdefault.aspx/tabid-1212/v-720/"},{"id" : "1444","label" : "FC Dürrenast","lVereinsnummer" : "10507","value" : "4","strKurzbezeichnung" : "AL","lk" : "http://www.al-la.ch/de/desktopdefault.aspx/tabid-1221/v-1444/"},{"id" : "1047698","label" : "FC Glattal Dübendorf","lVereinsnummer" : "11086","value" : "11","strKurzbezeichnung" : "FVRZ","lk" : "http://www.fvrz.ch/desktopdefault.aspx/tabid-1186/v-1047698/"}];
-  return res.json(search);
-  Search.findById(req.params.id, function (err, search) {
-    if(err) { return handleError(res, err); }
-    if(!search) { return res.send(404); }
-    return res.json(search);
-  });
-*/
 };
 
 // Creates a new search in the DB.
