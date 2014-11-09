@@ -53,7 +53,7 @@ angular.module('teamAnalyzerApp')
 
     $scope.$watch(
       function() {
-        return teamService.teamsCache;
+        return teamService.teams();
       },
       function(newVal) {
         if(newVal && newVal.length > 0) {
