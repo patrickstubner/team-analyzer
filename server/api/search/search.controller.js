@@ -17,7 +17,7 @@ exports.show = function(req, res) {
   if(!req.params.id || req.params.id.length < 2) {
     return res.json(200, []);
   }
-  return request.get("http://www.football.ch/portaldata/1/nis/WebService/verein/VereinSearch.ashx?term="+req.params.id)
+  return request.get({uri:"http://www.football.ch/portaldata/1/nis/WebService/verein/VereinSearch.ashx?term="+req.params.id, header: {Accept: "application/json, text/plain, */*"}} )
     .pipe(res);
 };
 

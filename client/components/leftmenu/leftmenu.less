@@ -1,74 +1,52 @@
 /* ------------------------------------------------------------ *\
 |* ------------------------------------------------------------ *|
-|* Menus
+|* Leftmenu
 |* ------------------------------------------------------------ *|
 \* ------------------------------------------------------------ */
-/* general style for all menus */
-nav.menu {
-    position: fixed;
-    z-index: 20;
-    background-color: #67b5d1;
-    overflow: hidden;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    -ms-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
-}
-nav.menu ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-nav.menu a {
-    font-weight: 300;
-    color: #fff;
-}
-button.close-menu {
-    background-color: #3184a1;
-    color: #fff;
-}
-button.close-menu:focus {
-    outline: none
+
+.leftmenu {
+  color: white;
+  background-color: rgb(31, 31, 31);
+  z-index: 900;
+  float: left;
+  width: 330px;
+  margin-left: -340px;
+  padding: 2px 10px 5px 10px;
+  box-shadow: 3px 3px 15px -1px rgb(31, 31, 31);
+  position: absolute;
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
 }
 
-/* left slider menu styles */
-nav.slide-menu-left {
-    width: 300px;
-    height: 100%;
+.leftmenu.leftmenu-open {
+  margin-left: 0px;
+}
 
-    &.open {
-        left: 0
-    }
+.leftmenu.leftmenu-hidden {
+    display: none;
 }
-nav.slide-menu-left li {
-    display: block;
-    text-align: center;
-    border-bottom: solid 1px #3184a1;
-    border-top: solid 1px #b5dbe9;
+
+.leftmenu-title {
+  font-size: 1.2em;
+  color: white;
+  text-align: center;
+  margin: 10px;
 }
-nav.slide-menu-left li:first-child {
-    border-top: none
+
+.leftmenu-team {
+  border-top: 1px solid rgb(181, 181, 181);
 }
-nav.slide-menu-left li:last-child {
-    border-bottom: none
+
+.leftmenu-team a {
+  color: rgb(181, 181, 181);
 }
-nav.slide-menu-left a {
-    display: block;
-    padding: 10px;
-    font-size: 18px;
+
+.leftmenu-team:hover a {
+  color: rgb(31, 31, 31);
 }
-nav.slide-menu-left button.close-menu {
-    margin: 10px 0;
-    padding: 10px 30px;
-    background-color: #3184a1;
-    color: #fff;
+
+.leftmenu-team:last-child {
+  border-bottom: 1px solid rgb(181, 181, 181);
 }
-nav.slide-menu-left {
-    left: -300px
-}
-/*
-body.sml-open nav.slide-menu-left {
-    left: 0
-}
-*/

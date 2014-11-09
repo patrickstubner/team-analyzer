@@ -1,7 +1,10 @@
-<nav  ng-controller="LeftmenuCtrl" ng-class="{'open': isLeftmenuOpen}" class="menu slide-menu-left">
-  <ul>
-    <li ng-repeat="team in teams()">
+<div ng-controller="LeftmenuCtrl" class="leftmenu" ng-class="{'leftmenu-open': isLeftmenuOpen, 'leftmenu-hidden': (teams().lenght < 1)}">
+  <ul class="nav">
+    <li class="leftmenu-title">
+      Teams
+    </li>
+    <li ng-repeat="team in teams()" class="leftmenu-team">
       <a ui-sref="main.team({teamId: team.sfvId})" style="text-align: left; padding: 2px 0px 2px 15px;">{{team.level}} - {{team.name}}</a>
     </li>
   </ul>
-</nav>
+</div>

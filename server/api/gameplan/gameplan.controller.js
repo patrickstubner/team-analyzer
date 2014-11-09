@@ -72,7 +72,7 @@ function extractGames($) {
         game = {};
         $gameTds = $tr.find('td');
         timeArray = $($gameTds[0]).text().split(':');
-        game.date = new Date(dateArray[2], dateArray[1]-1, dateArray[0], timeArray[0], timeArray[1]);
+        game.date = new Date(Date.UTC(dateArray[2], dateArray[1]-1, dateArray[0], timeArray[0], timeArray[1]));
         game.homeTeam = $($gameTds[1]).text();
         game.awayTeam = $($gameTds[3]).text();
         if(!$($gameTds[4]).attr('colspan')) {

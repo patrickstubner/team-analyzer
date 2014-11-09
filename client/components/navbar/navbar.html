@@ -1,41 +1,29 @@
 <div class="navbar navbar-default navbar-static-top" ng-controller="NavbarCtrl">
   <div class="container">
     <div class="navbar-header">
-      <button class="navbar-toggle left" type="button" ng-click="toggleLeftmenu()">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
+      <button class="navbar-toggle toggle-left" type="button" ng-click="toggleLeftmenu()" ng-class="{invisible: !teams.exist}">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
       <a href="/" class="navbar-brand">team-analyzer</a>
+      <button class="navbar-toggle toggle-right" type="button" ng-click="toggleHeadermenu()">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
     </div>
-    <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
-      <ul class="nav navbar-nav">
-        <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
-            <a ng-href="{{item.link}}">{{item.title}}</a>
-        </li>
-        <li ng-show="isAdmin()" ng-class="{active: isActive('/admin')}"><a href="/admin">Admin</a></li>
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <input type="text" ng-model="selectedClub" placeholder="Verein suchen" typeahead="club as club.label + '  (' + club.strKurzbezeichnung + ')' for club in getClubs($viewValue)" typeahead-min-length="2" typeahead-on-select="selectClub($item, $model, $label)" typeahead-loading="loadingLocations" class="form-control" style="margin-top: 8px; margin-right: 15px;"> 
-          <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh spinner-position rotating"></i>
-        </li>
-<!--
-        <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/signup')}"><a href="/signup">Sign up</a></li>
-        <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
-        <li ng-show="isLoggedIn()"><p class="navbar-text">Hello {{ getCurrentUser().name }}</p> </li>
-        <li ng-show="isLoggedIn()" ng-class="{active: isActive('/settings')}"><a href="/settings"><span class="glyphicon glyphicon-cog"></span></a></li>
-        <li ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}"><a href="" ng-click="logout()">Logout</a></li>
--->
-      </ul>
+    <div class="navbar-collapse">
+      <div collapse="isCollapsed" class="collapse" id="navbar-main">
+        <ul class="nav navbar-nav navbar-right toggle-right">
+          <li>
+            <input type="text" ng-model="selectedClub" placeholder="Verein suchen" typeahead="club as club.label + '  (' + club.strKurzbezeichnung + ')' for club in getClubs($viewValue)" typeahead-min-length="2" typeahead-on-select="selectClub($item, $model, $label)" typeahead-loading="loadingLocations" class="form-control" style="margin-top: 8px; margin-right: 15px;" focus-on="selectClub"> 
+            <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh spinner-position rotating"></i>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

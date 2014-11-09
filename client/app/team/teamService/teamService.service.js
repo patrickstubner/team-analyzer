@@ -32,6 +32,7 @@ angular.module('teamAnalyzerApp')
           }
         }
         return team;
-      }
+      },
+      teamsCache: teamsCache
     };
   });
