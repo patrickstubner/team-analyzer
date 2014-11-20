@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('teamAnalyzerApp')
-  .controller('NavbarCtrl', function ($scope, $rootScope, $location, $http, Auth, teamService, focusService) {
+  .controller('NavbarCtrl', function ($scope, $rootScope, $location, $http, Auth, teamService, focusService, blurService) {
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
@@ -32,6 +32,7 @@ angular.module('teamAnalyzerApp')
             teamService.teams($scope.club.teams);
             $scope.openLeftmenu();
             $scope.isCollapsed = true;
+            blurService('clubSelected');
           }
         );
     };
