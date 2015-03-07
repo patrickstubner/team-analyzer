@@ -71,7 +71,8 @@ function extractGames($) {
       } else if($tr.hasClass('nisCupSpiel')) {
         game = {};
         $gameTds = $tr.find('td');
-        timeArray = $($gameTds[0]).text().split(':');
+        game.time = $($gameTds[0]).text();
+        timeArray = game.time.split(':');
         game.date = new Date(Date.UTC(dateArray[2], dateArray[1]-1, dateArray[0], timeArray[0]-1, timeArray[1]));
         game.homeTeam = $($gameTds[1]).text();
         game.awayTeam = $($gameTds[3]).text();
