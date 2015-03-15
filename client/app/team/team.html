@@ -50,7 +50,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="game in TeamCtrl.gameplan.games | filter:TeamCtrl.search.team1 ? TeamCtrl.search.team1.name : null | orderBy:'date':false" ng-click="TeamCtrl.selectTeam2(game.homeTeam, game.awayTeam)" ng-class="{win: TeamCtrl.isWin(game, 'team1'), loss: TeamCtrl.isLoss(game, 'team1'), draw: TeamCtrl.isDraw(game, 'team1'), selected: TeamCtrl.isSelected(game)}" tooltip="{{game.date | date:'EEE. d.M.yyyy'}} {{game.time}}" tooltip-animation="false">
+          <tr ng-repeat="game in TeamCtrl.gameplan.games | filter:TeamCtrl.search.team1 ? TeamCtrl.search.team1.name : null | orderBy:'date':false" ng-click="TeamCtrl.selectTeam2(game.homeTeam, game.awayTeam)" ng-class="{win: TeamCtrl.isWin(game, 'team1'), loss: TeamCtrl.isLoss(game, 'team1'), draw: TeamCtrl.isDraw(game, 'team1'), selected: TeamCtrl.isSelected(game)}" tooltip="{{game.date | date:'EEE. d.M.yyyy'}} {{game.time}}h" tooltip-animation="false">
             <td class="right">{{game.homeTeam}}</td>
             <td class="right">{{game.homeScore}}</td>
             <td>:</td>
@@ -149,7 +149,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="game in TeamCtrl.gameplan.games | filter:TeamCtrl.search.team2 ? TeamCtrl.search.team2.name : null | orderBy:'date':false" ng-class="{win: TeamCtrl.isWin(game, 'team2'), loss: TeamCtrl.isLoss(game, 'team2'), draw: TeamCtrl.isDraw(game, 'team2')}" tooltip="{{game.date | date:'EEE. d.M.yyyy'}} {{game.time}}" tooltip-animation="false">
+          <tr ng-repeat="game in TeamCtrl.gameplan.games | filter:TeamCtrl.search.team2 ? TeamCtrl.search.team2.name : null | orderBy:'date':false" ng-class="{win: TeamCtrl.isWin(game, 'team2'), loss: TeamCtrl.isLoss(game, 'team2'), draw: TeamCtrl.isDraw(game, 'team2')}" tooltip="{{game.date | date:'EEE. d.M.yyyy'}} {{game.time}}h" tooltip-animation="false">
             <td class="right">{{game.homeTeam}}</td>
             <td class="right">{{game.homeScore}}</td>
             <td>:</td>
